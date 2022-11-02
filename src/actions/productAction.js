@@ -29,7 +29,7 @@ export const listProducts =
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST })
       const { data } = await axios.get(
-        `http://localhost:8000/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
+        `https://e-commerce-proshop-app.herokuapp.com/api/products?keyword=${keyword}&pageNumber=${pageNumber}`
       )
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
     } catch (error) {
@@ -46,7 +46,9 @@ export const listProductDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_DETAIL_REQUEST, payload: id })
 
-    const { data } = await axios.get(`http://localhost:8000/api/products/${id}`)
+    const { data } = await axios.get(
+      `https://e-commerce-proshop-app.herokuapp.com/api/products/${id}`
+    )
     dispatch({ type: PRODUCT_DETAIL_SUCCESS, payload: data })
   } catch (error) {
     dispatch({
@@ -71,7 +73,10 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
-    await axios.delete(`http://localhost:8000/api/products/${id}`, config)
+    await axios.delete(
+      `https://e-commerce-proshop-app.herokuapp.com/api/products/${id}`,
+      config
+    )
     dispatch({ type: PRODUCT_DELETE_SUCCESS })
   } catch (error) {
     dispatch({
@@ -97,7 +102,7 @@ export const createProduct = () => async (dispatch, getState) => {
       },
     }
     const { data } = await axios.post(
-      `http://localhost:8000/api/products/`,
+      `https://e-commerce-proshop-app.herokuapp.com/api/products/`,
       {},
       config
     )
@@ -127,7 +132,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
       },
     }
     const { data } = await axios.put(
-      `http://localhost:8000/api/products/${product._id}`,
+      `https://e-commerce-proshop-app.herokuapp.com/api/products/${product._id}`,
       product,
       config
     )
@@ -158,7 +163,7 @@ export const createReviewProduct =
         },
       }
       await axios.post(
-        `http://localhost:8000/api/products/${id}/reviews `,
+        `https://e-commerce-proshop-app.herokuapp.com/api/products/${id}/reviews `,
         review,
         config
       )
@@ -177,7 +182,9 @@ export const createReviewProduct =
 export const listTopProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_TOP_REQUEST })
-    const { data } = await axios.get(`http://localhost:8000/api/products/top`)
+    const { data } = await axios.get(
+      `https://e-commerce-proshop-app.herokuapp.com/api/products/top`
+    )
     dispatch({ type: PRODUCT_TOP_SUCCESS, payload: data })
   } catch (error) {
     dispatch({

@@ -34,7 +34,7 @@ export const login = (email, password) => async (dispatch) => {
       headers: { 'Content-Type': 'application/json' },
     }
     const { data } = await axios.post(
-      'http://localhost:8000/api/users/login',
+      'https://e-commerce-proshop-app.herokuapp.com/api/users/login',
       {
         email,
         password,
@@ -69,7 +69,7 @@ export const register = (name, email, password) => async (dispatch) => {
       headers: { 'Content-Type': 'application/json' },
     }
     const { data } = await axios.post(
-      'http://localhost:8000/api/users',
+      'https://e-commerce-proshop-app.herokuapp.com/api/users',
       {
         name,
         email,
@@ -111,7 +111,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
     }
 
     const { data } = await axios.get(
-      ` http://localhost:8000/api/users/${id}`,
+      ` https://e-commerce-proshop-app.herokuapp.com/api/users/${id}`,
       config
     )
     dispatch({
@@ -143,7 +143,10 @@ export const listUsers = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
-    const { data } = await axios.get(`http://localhost:8000/api/users`, config)
+    const { data } = await axios.get(
+      `https://e-commerce-proshop-app.herokuapp.com/api/users`,
+      config
+    )
     dispatch({
       type: USER_LIST_SUCCESS,
       payload: data,
@@ -172,7 +175,10 @@ export const deleteUsers = (id) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
-    await axios.delete(`http://localhost:8000/api/users/${id}`, config)
+    await axios.delete(
+      `https://e-commerce-proshop-app.herokuapp.com/api/users/${id}`,
+      config
+    )
     dispatch({ type: USER_DELETE_SUCCESS })
   } catch (error) {
     dispatch({
@@ -198,7 +204,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     }
     const { data } = await axios.put(
-      `http://localhost:8000/api/users/profile`,
+      `https://e-commerce-proshop-app.herokuapp.com/api/users/profile`,
       user,
       config
     )
@@ -230,7 +236,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
       },
     }
     const { data } = await axios.put(
-      `http://localhost:8000/api/users/${user._id}`,
+      `https://e-commerce-proshop-app.herokuapp.com/api/users/${user._id}`,
       user,
       config
     )
